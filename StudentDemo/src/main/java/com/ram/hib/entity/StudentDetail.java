@@ -3,6 +3,7 @@ package com.ram.hib.entity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,7 +24,7 @@ public class StudentDetail {
 			private String city;
 			@Column(name="state")
 			private String state;
-			@OneToOne(mappedBy = "studentdetail"  ,cascade = CascadeType.ALL)
+			@OneToOne(mappedBy = "studentdetail"  ,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 			private StudentDemo studentdemo;
 			
 			

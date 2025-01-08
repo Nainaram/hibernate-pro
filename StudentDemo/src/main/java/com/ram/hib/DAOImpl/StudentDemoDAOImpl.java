@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import com.ram.hib.Interfaces.StudentDemoDAO;
+import com.ram.hib.entity.Projects;
 import com.ram.hib.entity.StudentDemo;
 import com.ram.hib.entity.StudentDetail;
 import com.ram.hib.entity.Subjects;
@@ -24,6 +25,7 @@ public class StudentDemoDAOImpl implements StudentDemoDAO{
 				.addAnnotatedClass(StudentDemo.class)
 				.addAnnotatedClass(StudentDetail.class)
 				.addAnnotatedClass(Subjects.class)
+				.addAnnotatedClass(Projects.class)
 				.buildSessionFactory().openSession();
 				
 	}

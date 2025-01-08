@@ -5,10 +5,13 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -33,9 +36,24 @@ public class StudentDemo {
 	@JoinColumn(name="studentdetail")
 	private StudentDetail studentdetail;
 	
-	@OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Subjects> subjects;
 	
+	
+	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinTable( name ="student_project"
+				,joinColumns = {@JoinColumn(name="sid")}
+				,inverseJoinColumns = {@JoinColumn(name="pid")})
+	private List<Projects>  projectsList;
+	
+	
+	
+	public List<Projects> getProjectsList() {
+		return projectsList;
+	}
+	public void setProjectsList(List<Projects> projectsList) {
+		this.projectsList = projectsList;
+	}
 	public List<Subjects> getSubjects() {
 		return subjects;
 	}
@@ -98,9 +116,11 @@ public class StudentDemo {
 	}
 	@Override
 	public String toString() {
-		return  sid + "  " + name + "  " + email + " " + address + "  "
-				+ pincode ;
+		return  sid + " " + name + " " + email + " " + address + " "
+				+ pincode 
+				 ;
 	}
+	
 	
 	
 	
